@@ -7,7 +7,7 @@
     </el-row>
     <el-row>
       <el-col>
-        <span class="header-quote">If I wasn't moving forward, I felt like I was going to explode.</span>
+        <span class="header-quote">Only stop learning when die.</span>
       </el-col>
     </el-row>
     <el-row>

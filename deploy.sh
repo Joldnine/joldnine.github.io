@@ -1,6 +1,7 @@
 #!/bin/bash 
 set -x
 
+cp ./build/index.html ./
 npm run build >/dev/null
 rm -rf ./static
 rm ./index.html
