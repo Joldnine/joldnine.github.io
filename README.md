@@ -14,5 +14,6 @@ marked
 Packed by `webpack`
 
 ## Build Setup
-
+```
 bash deploy.sh
+```
