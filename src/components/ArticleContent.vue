@@ -26,6 +26,7 @@
 
 <script>
 import marked from 'marked'
+import { goToTop } from '@/utils'
 
 export default {
   name: 'ArticleContent',
@@ -42,6 +43,7 @@ export default {
   },
   created () {
     this.getArticleById()
+    goToTop()
   },
   computed: {
     compiledMarkdown: function () {
@@ -49,14 +51,14 @@ export default {
     },
     getLabelsStr () {
       var labels = this.article.labels
-      var labelsStr = ''
+      var labelsNameList = []
+      var labelsNameStr
       labels.forEach(label => {
-        labelsStr += label.name
+        labelsNameList.push(label.name)
       })
-      if (labels.length > 0) {
-        labelsStr = '<i class="el-icon-info" /> ' + labelsStr
-      }
-      return labelsStr
+      labelsNameStr = labelsNameList.join(', ')
+      labelsNameStr = labels.length > 0 ? '<i class="el-icon-info" /> ' + labelsNameStr : labelsNameStr
+      return labelsNameStr
     }
   },
   methods: {

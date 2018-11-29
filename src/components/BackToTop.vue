@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { goToTop } from '@/utils'
+
 export default {
   name: 'BackToTop',
   props: {
@@ -34,19 +36,11 @@ export default {
     let catchScroll = () => {
       this.visible = (window.pageYOffset > parseInt(this.visibleOffset))
     }
-    window.smoothscroll = () => {
-      this.visible = false
-      let currentScroll = document.documentElement.scrollTop || document.body.scrollTop
-      if (currentScroll > 0) {
-        window.requestAnimationFrame(window.smoothscroll)
-        window.scrollTo(0, Math.floor(currentScroll - (currentScroll / 5)))
-      }
-    }
     window.onscroll = catchScroll
   },
   methods: {
     backToTop () {
-      window.smoothscroll()
+      goToTop()
     }
   }
 }
