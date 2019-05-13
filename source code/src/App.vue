@@ -49,4 +49,7 @@ export default {
 code {
   color: #F56C6C;
 }
+img {
+  width: 100%
+}
 </style>
