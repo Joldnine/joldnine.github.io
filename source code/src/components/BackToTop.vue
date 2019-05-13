@@ -1,8 +1,8 @@
 <template>
   <transition>
-    <div class="back-to-top" :style="`bottom:${this.bottom};right:${this.right};`" v-show="visible" @click="backToTop">
+    <div class="back-to-top" :style="`bottom:${this.bottom};right:${this.right};`" v-show="visible">
       <el-tag>
-        <i class="el-icon-arrow-up"></i>
+        <i class="el-icon-arrow-up" @click="backToTop"></i>
       </el-tag>
     </div>
   </transition>
