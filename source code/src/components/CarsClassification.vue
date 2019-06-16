@@ -11,7 +11,7 @@
     <hr>
     <el-form label-width="72px">
       <el-form-item label="JPG URL">
-        <el-input v-model="url"></el-input>
+        <el-input v-model="url" @keyup.enter.native="onSubmit"></el-input>
       </el-form-item>
       <el-form-item v-if="!loading">
         <el-button @click="onSubmit">Analyze</el-button>
@@ -45,8 +45,7 @@ export default {
       loading: false,
       model: '',
       confidence: 0,
-      display_url: '',
-      search_url: ''
+      display_url: ''
     }
   },
   methods: {
