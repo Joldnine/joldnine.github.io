@@ -29,3 +29,13 @@ const paramsToUrl = (params) => {
     .map(k => `${esc(k)}=${esc(params[k])}`)
     .join('&')
 }
+
+export function getCarsClassification (url) {
+  let query = 'https://cars-classification.azurewebsites.net/api/cars-classification-v1'
+  return fetch(query, {
+    method: 'post',
+    body: JSON.stringify({
+      url
+    }),
+  }).then(response => response.text())
+}
