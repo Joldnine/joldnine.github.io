@@ -31,11 +31,12 @@ const paramsToUrl = (params) => {
 }
 
 export function getCarsClassification (url) {
-  let query = 'https://cars-classification.azurewebsites.net/api/cars-classification-v1'
+  // let query = 'https://cars-classification.azurewebsites.net/api/cars-classification-v1'
+  let query = 'https://28tv3qb0vd.execute-api.ap-southeast-1.amazonaws.com/default/CarsClassification'
   return fetch(query, {
     method: 'post',
     body: JSON.stringify({
       url
     }),
-  }).then(response => response.text())
+  }).then(response => response.json())
 }

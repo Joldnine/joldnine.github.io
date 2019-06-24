@@ -55,19 +55,18 @@ export default {
       this.confidence = 0
       this.display_url = ''
       getCarsClassification(this.url).then((response) => {
-        let arr = response.split(', ')
-        if (arr.length != 3) {
+        if ('error' in response) {
           this.loading = false
           this.$notify.error({
-            title: 'Error',
-            message: 'Not a valid jpg image url',
+            title: 'error',
+            message: response.error,
             duration: 2500
           })
           return
         }
-        this.model = arr[1].split(': ')[1]
-        this.confidence = arr[2].split(': ')[1]
-        this.display_url = arr[0].split(': ')[1]
+        this.model = response.class
+        this.confidence = response.confidence
+        this.display_url = this.url
         this.loading = false
       })
     },
