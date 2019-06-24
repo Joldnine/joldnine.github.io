@@ -41,7 +41,7 @@ export default {
   name: 'CarsClassification',
   data () {
     return {
-      url: '',
+      url: 'https://i.ytimg.com/vi/mxxUZl9_sLw/maxresdefault.jpg',
       loading: false,
       model: '',
       confidence: 0,
