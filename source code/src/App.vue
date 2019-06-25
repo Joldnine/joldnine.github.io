@@ -2,12 +2,12 @@
   <div id="app">
     <el-row>
       <el-col>
-        <span class="header-title">Joldnine's Blog</span>
+        <span class="header-title">Joldnine</span>
       </el-col>
     </el-row>
     <el-row>
       <el-col>
-        <span class="header-quote">Only stop learning when die.</span>
+        <span class="header-quote">Live learning, or die.</span>
       </el-col>
     </el-row>
     <el-row>

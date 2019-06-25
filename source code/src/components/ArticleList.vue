@@ -1,20 +1,39 @@
 <template>
   <div>
-    <div class="article-list-search">
-      <!-- TODO -->
-    </div>
-    <el-button v-if="loading" :loading="loading"></el-button>
-    <div v-for="article in articleList" :key="article.number" class="article-list-item">
-      <div @click="goToContent(article.number)" class="article-list-item-title">
-        <span>{{ article.title }}</span>
-      </div>
-      <div class="article-list-item-content">
-        <div v-html="compiledMarkdown(article.body)"></div>
-      </div>
-      <div class="article-list-item-date">
-        <div>{{ article.created_at.split('T')[0] }}</div>
-      </div>
-    </div>
+    <!-- <el-menu :default-active="1" mode="horizontal" @select="handleSelect">
+      <el-menu-item index="1">Blog</el-menu-item>
+      <el-menu-item index="2">Project Demos</el-menu-item>
+      <el-menu-item index="3"><a href="https://github.com/Joldnine" target="_blank">Github</a></el-menu-item>
+    </el-menu> -->
+    <el-tabs v-model="activeTab">
+      <el-tab-pane label="Blog" name="1">
+        <el-button v-if="loading" :loading="loading"></el-button>
+        <div v-for="article in articleList" :key="article.number" class="list-item">
+          <div @click="goToArticle(article.number)" class="list-item-title">
+            <span>{{ article.title }}</span>
+          </div>
+          <div class="list-item-content">
+            <div v-html="compiledMarkdown(article.body)"></div>
+          </div>
+          <div class="list-item-date">
+            <div>{{ article.created_at.split('T')[0] }}</div>
+          </div>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="Project Demos" name="2">
+        <div v-for="item in demoList" :key="item.name" class="list-item">
+          <div @click="goToPage(item.router)" class="list-item-title">
+            <span>{{ item.name }}</span>
+          </div>
+          <div class="list-item-content">
+            <div v-html="compiledMarkdown(item.desc)"></div>
+          </div>
+          <div class="list-item-date">
+            <div>{{ item.addDate }}</div>
+          </div>
+        </div>
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
@@ -25,7 +44,16 @@ export default {
   name: 'ArticleList',
   data () {
     return {
-      loading: false
+      loading: false,
+      activeTab: "1",
+      demoList: [
+        {
+          name: "Stanford Cars Classification",
+          router: "cars-classification",
+          desc: "A serverless deployment of a trained cars classification mode.\n",
+          addDate: "2019-06-24"
+        }
+      ]
     }
   },
   computed: {
@@ -48,8 +76,11 @@ export default {
         this.loading = false
       })
     },
-    goToContent (number) {
+    goToArticle (number) {
       this.$router.push('/article/' + number)
+    },
+    goToPage(name) {
+      this.$router.push('/' + name)
     },
     compiledMarkdown (body) {
       return marked(body.substring(0, body.indexOf('\n')))
@@ -59,28 +90,28 @@ export default {
 </script>
 
 <style scoped>
-  .article-list-item {
+  .list-item {
     padding: .5em;
     margin: 1em 0;
     text-align: left;
   }
-  .article-list-item:hover {
+  .list-item:hover {
     background-color: rgba(0, 0, 0, .05);
   }
-  .article-list-item-title {
+  .list-item-title {
     font-size: 1.3em;
     cursor: pointer;
     transition: transform .2s;
     color: #303133;
   }
-  .article-list-item-title:hover {
+  .list-item-title:hover {
     color: #409EFF;
     transform: translateX(.3em);
   }
-  .article-list-item-content {
+  .list-item-content {
     font-size: 0.9em;
   }
-  .article-list-item-date {
+  .list-item-date {
     font-size: 0.6em;
   }
 </style>
