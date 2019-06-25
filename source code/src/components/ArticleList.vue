@@ -1,10 +1,5 @@
 <template>
   <div>
-    <!-- <el-menu :default-active="1" mode="horizontal" @select="handleSelect">
-      <el-menu-item index="1">Blog</el-menu-item>
-      <el-menu-item index="2">Project Demos</el-menu-item>
-      <el-menu-item index="3"><a href="https://github.com/Joldnine" target="_blank">Github</a></el-menu-item>
-    </el-menu> -->
     <el-tabs v-model="activeTab">
       <el-tab-pane label="Blog" name="1">
         <el-button v-if="loading" :loading="loading"></el-button>
@@ -50,8 +45,8 @@ export default {
         {
           name: "Stanford Cars Classification",
           router: "cars-classification",
-          desc: "A serverless deployment of a trained cars classification mode.\n",
-          addDate: "2019-06-24"
+          desc: "A serverless deployment of a trained cars classification model.\n",
+          addDate: "2019-06-01"
         }
       ]
     }
