@@ -16,8 +16,10 @@
       <el-form-item v-if="!loading">
         <el-button @click="onSubmit">Analyze</el-button>
       </el-form-item>
+      <el-form-item>
+        <el-button v-if="loading" :loading="loading"></el-button>
+      </el-form-item>
     </el-form>
-    <el-button v-if="loading" :loading="loading"></el-button>
     <el-card v-if="model !== ''">
       <div slot="header" class="clearfix">
         <span>
@@ -27,7 +29,7 @@
         <span style="float: right; padding: 3px 0" type="text">
           Confidence: 
           <span style="color: #1989fa">{{ confidence }}</span>
-          </span>
+        </span>
       </div>
        <img :src="display_url" class="image">
     </el-card>
@@ -64,6 +66,11 @@ export default {
           })
           return
         }
+        this.$notify.success({
+          title: 'Success',
+          message: "Inference time: " + response.time,
+          duration: 2500
+        })
         this.model = response.class
         this.confidence = response.confidence
         this.display_url = this.url
