@@ -62,14 +62,14 @@ export default {
           this.$notify.error({
             title: 'error',
             message: response.error,
-            duration: 2500
+            duration: 3000
           })
           return
         }
         this.$notify.success({
           title: 'Success',
           message: "Inference time: " + response.time,
-          duration: 2500
+          duration: 3000
         })
         this.model = response.class
         this.confidence = response.confidence
@@ -82,7 +82,7 @@ export default {
               title: 'Info',
               message: "Please expect a longer response time (~6s) for the first prediction,\
                because AWS Lambda needs some time do the 'cold start'.",
-              duration: 4000
+              duration: 6000
             })
           }
         }, 
