@@ -15,7 +15,7 @@
           </div>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="Project Demos" name="2">
+      <el-tab-pane label="Playground" name="2">
         <div v-for="item in demoList" :key="item.name" class="list-item">
           <div @click="goToPage(item.router)" class="list-item-title">
             <span>{{ item.name }}</span>
