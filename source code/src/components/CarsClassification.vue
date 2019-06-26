@@ -76,6 +76,18 @@ export default {
         this.display_url = this.url
         this.loading = false
       })
+      setTimeout(() => { 
+          if (this.loading == true) {
+            this.$notify.info({
+              title: 'Info',
+              message: "Please expect a longer response time (~6s) for the first prediction,\
+               because AWS Lambda needs some time do the 'cold start'.",
+              duration: 4000
+            })
+          }
+        }, 
+        2000
+      );
     },
     goToList () {
       this.$router.push('/')
