@@ -14,6 +14,6 @@ marked
 
 ## Build Setup
 ```
-bash deploy.sh
+$ bash deploy.sh
+// type the commit message in the prompt
 ```
-then type in commit message
