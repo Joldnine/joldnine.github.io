@@ -73,6 +73,7 @@ export default {
       getCarsClassification(this.url).then((response) => {
         if ('error' in response) {
           this.loading = false
+          clearTimeout(timeout)
           this.$notify.error({
             title: 'error',
             message: response.error,
