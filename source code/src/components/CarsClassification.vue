@@ -56,6 +56,20 @@ export default {
       this.model = ''
       this.confidence = 0
       this.display_url = ''
+
+      let timeout = setTimeout(() => { 
+          if (this.loading == true) {
+            this.$notify.info({
+              title: 'Info',
+              message: "Please expect a longer response time (~6s) for the first prediction,\
+               because AWS Lambda needs some time do the 'cold start'.",
+              duration: 6000
+            })
+          }
+        }, 
+        2000
+      )
+
       getCarsClassification(this.url).then((response) => {
         if ('error' in response) {
           this.loading = false
@@ -75,19 +89,8 @@ export default {
         this.confidence = response.confidence
         this.display_url = this.url
         this.loading = false
+        clearTimeout(timeout)
       })
-      setTimeout(() => { 
-          if (this.loading == true) {
-            this.$notify.info({
-              title: 'Info',
-              message: "Please expect a longer response time (~6s) for the first prediction,\
-               because AWS Lambda needs some time do the 'cold start'.",
-              duration: 6000
-            })
-          }
-        }, 
-        2000
-      );
     },
     goToList () {
       this.$router.push('/')
